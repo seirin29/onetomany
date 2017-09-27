@@ -1,5 +1,6 @@
 <?php
-
+use App\User;
+use App\Post;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -13,4 +14,16 @@
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/create', function () {
+    $user = User::findOrFail(1);
+	$post = new Post(['title'=>'My First Post', 'body'=>'I Love Laravel']);
+	$user->posts()->save($post);
+});
+
+Route::get('/create2', function () {
+    $user = User::findOrFail(1);
+	$post = new Post(['title'=>'My 2nd Post', 'body'=>'I Love You']);
+	$user->posts()->save($post);
 });
