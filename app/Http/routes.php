@@ -27,3 +27,10 @@ Route::get('/create2', function () {
 	$post = new Post(['title'=>'My 2nd Post', 'body'=>'I Love You']);
 	$user->posts()->save($post);
 });
+
+Route::get('/read', function () {
+    $user = User::findOrFail(1);
+	foreach($user->posts as $post){
+		echo $post->title . "<br />";
+	}
+});
